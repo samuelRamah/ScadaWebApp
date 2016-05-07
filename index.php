@@ -3,7 +3,7 @@
 <head>
 	<title>|PAGE OFICIELLE|</title>
 	<meta charset="utf-8"/>
-	<link rel ="stylesheet" type="text/css" href="styleOfficielle.css" />
+	<link rel ="stylesheet" type="text/css" href="style.css" />
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/slate-bootstrap.min.css">
 </head>
