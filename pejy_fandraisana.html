@@ -1,0 +1,65 @@
+<! DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Accueil...</title>
+		
+		<script language="javascript">
+			function methode1(form2){
+				document.form2.desc.value = "Température Normale: \n Entre 18°C et 23°C"
+			}
+			function methode2(form2){
+				document.form2.desc.value = "Rien à dire sur l'humidité ^_^"
+			}
+			function methode3(form2){
+				document.form2.desc.value = "Taux d'acide supérieur à la valeur limite"
+			}
+			function methode4(form2){
+				document.form2.desc.value = "L'électricité est bien distribué dans toutes les modules"
+			}
+			function methode5(form2){
+				document.form2.desc.value = "Niveau d'engrais normale"
+			}
+			function methode6(form2){
+				document.form2.desc.value = "Niveau d'eau presque à la moitier du réservoir!!!"
+			}
+		</script>
+		<link rel="stylesheet" href="style1.css" />
+	</head>
+	<body>
+		<div class="wrapper">
+			<header>
+				<marquee><h1>SCADA</h1></marquee>
+				<h2>Supervisory Control And Data Acquisition </h2>
+			</header>
+			<nav class="menu">
+				<ul>
+					<li><a href="#">Accueil</a></li>
+					<li><a href="#">Node</a></li>
+					<li><a href="#">Object</a></li>
+					<li><a href="#">Schedule</a></li>
+					<li><a href="#">Admin</a></li>
+					<li><a href="Apropos.html">A propos</a></li>
+				</ul>
+			</nav>
+			<section class="data">
+				<form name="form2">
+					<input type="button" name="bouton1" value="Température" style="width:150px" style="margin-left:4px " onclick="methode1(form2)">
+					<input type="button" name="bouton2" value="Humidité" style="width:150px"  onclick="methode2(form2)">
+					<input type="button" name="bouton3" value="Taux de NaOH" style="width:150px" onclick="methode3(form2)"><br/>
+					<input type="button" name="bouton4" value="Distribution électrique" style="width:150px" onclick="methode4(form2)">
+					<input type="button" name="bouton5" value="Taux d&#8217;engrais" style="width:150px" onclick="methode5(form2)">
+					<input type="button" name="bouton6" value="Niveau d&#8217eau" style="width:150px" onclick="methode6(form2)">
+					<br/><br/> <label for="desc">Description :</label> <br/>
+					<textarea name="desc" id="desc" rows="8" cols="60" />Valeur par defaut!</textarea>
+				</form>
+			</section>
+			<footer>
+				<p>PROJET 1.0<br />
+				<a href="#">Contacter nous ! </a></p>
+				<a href="Login.html">Déconnecter</a></p>
+			</footer>
+		</div>
+		
+	</body>
+</html>

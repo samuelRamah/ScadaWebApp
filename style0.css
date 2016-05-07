@@ -1,0 +1,50 @@
+body{
+	background-color: rgb(192,192,192); 
+}
+
+.wrapper{
+	display: block;
+	width: 600px;
+	margin: auto;
+}
+
+header{
+	display: block;
+	width: 600px;
+	margin: auto;
+	height: 40px;
+
+}
+
+header p {
+	font-size: 1.3em;
+	font-style: italic;
+	font-weight: bold;
+	display: block;
+	width: 200px;
+	width: 200px;
+	margin: auto;
+}
+
+.data{
+	margin-top: 110px;
+}
+
+.bouton{
+	margin-top: 10px;
+	text-align: right;
+}
+p
+{
+	background: rgb(182,280,200);
+	text-align: center;
+	border: 5px rgb(182,290,200) groove;
+	box-shadow: 5px 5px 5px black;
+	border-radius: 10px;
+}
+
+label{
+	display: inline-block;
+	width: 100px;
+	text-align: left;
+}

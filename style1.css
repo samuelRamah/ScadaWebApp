@@ -1,0 +1,54 @@
+body
+{
+	background-color: rgb(192,192,192); 
+}
+
+.wrapper{
+	display: block;
+	width: 650px;
+	margin: auto;
+}
+
+.menu
+{
+	display: inline-block;
+	width: 150px;
+	border: 1px solid blue;
+	vertical-align: top;
+	box-shadow: 6px 6px 6px black;
+}
+
+.menu ul{
+	list-style-type: none;
+}
+
+.data
+{
+	display: inline-block;
+	border: 1px solid blue;
+	vertical-align: top;
+	box-shadow: 6px 6px 6px black;
+	margin-left: 4px
+}
+
+header
+{
+	background-image: url("../images/Nous.png") ;
+	border-radius: 10px;
+
+}
+header h1
+{
+	margin-bottom: 5px
+}
+footer
+{
+	border: 4px dashed rgb(182,202,210) ;
+	margin-top: 50px;
+	padding-left: 10px;
+	border-radius: 10px;
+textarea
+{
+	padding: 2px;
+	margin-left: 4px;
+}

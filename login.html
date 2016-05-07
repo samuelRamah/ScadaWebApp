@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="style0.css">
+	<title>Login...</title>
+
+	<script type="text/javascript">
+		function test(form1)
+		{
+			var m2p;
+			var pass="msi3";
+			m2p=document.form1.pass.value;
+			if (document.form1.pseudo==""){
+				alert("Tous les champs doivent être remplis!!!");
+				window.location="login.html"
+			}else if (document.form1.pass==""){
+				alert("Tous les champs doivent être remplis!!!");
+				window.location="login.html"
+			}else if (m2p!=pass) {
+				window.location="login.html"
+			} else{
+				window.location="pejy_fandraisana.html"
+			};
+		}
+	</script>
+
+
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<p><img src="../images/ispm.png" alt="ispm_logo" width="60px" height="60px"></p>
+			<p>SCADA</p>
+			
+		</header>
+		<section class="data">
+			<form method="post" action="javascript:test(from1)" name="form1">
+			<p>
+				<label for="pseudo">Admin :</label>
+				<input type="text" name="pseudo" id="pseudo"><br/>
+				<label for="pass">Password :</label>
+				<input type="Password" name="pass" id="pass"><br/>
+				<input type="button" value="Se connecter" onclick="test(form1)">
+				
+				<script type="text/javascript">
+					var myForm = document.getElementById('form1') ;
+
+				</script>
+			</p>
+			</form>
+		</section>
+		<footer>
+			
+		</footer>
+	</div>
+</body>
+</html>
