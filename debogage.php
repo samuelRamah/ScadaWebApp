@@ -3,7 +3,7 @@
 <head>
 	<title>|PAGE OFICIELLE|</title>
 	<meta charset="utf-8"/>
-	<link rel ="stylesheet" type="text/css" href="styleOfficielle.css" />
+	<link rel ="stylesheet" type="text/css" href="style.css" />
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/slate-bootstrap.min.css">
 </head>
@@ -23,7 +23,7 @@
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="nav"><a href="pageOfficielle.php">Général</a></li>
+						<li class="nav"><a href="home.php">Général</a></li>
 						<li class="nav"><a href="evolution.php">Evolution</a></li>
 						<li class="nav active"><a href="">Débogage</a></li>
 						<li class="nav"><a href="">Administrateur</a></li>
@@ -36,18 +36,18 @@
 			<table class="table table-striped table-bordered table-hover">
 				<tr>
 					<th>Message source</th>
-					<th><input type="text"/></th>
+					<th><input type="text" id="message-source" name="msg-src" /></th>
 				</tr>
 				<tr>
 					<th>Message type</th>
-					<th><input type="text"/></th>
+					<th><input type="text" id="message-type" name="msg-type"/></th>
 				</tr>
 				<tr>
 					<th>Reçu</th>
 					<th><input type="checkbox"></th>
 				</tr>
 				<tr>
-					<th>Non reçu</th>
+					<th>Envoyer</th>
 					<th><input type="checkbox"></th>
 				</tr>
 			</table>

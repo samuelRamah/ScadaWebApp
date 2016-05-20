@@ -3,7 +3,7 @@
 <head>
 	<title>|PAGE OFICIELLE|</title>
 	<meta charset="utf-8"/>
-	<link rel ="stylesheet" type="text/css" href="styleOfficielle.css" />
+	<link rel ="stylesheet" type="text/css" href="style.css" />
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/slate-bootstrap.min.css">
 </head>
@@ -23,7 +23,7 @@
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="nav"><a href="pageOfficielle.php">Général</a></li>
+						<li class="nav"><a href="home.php">Général</a></li>
 						<li class="nav active"><a href="evolution.php">Evolution</a></li>
 						<li class="nav"><a href="debogage.php">Débogage</a></li>
 						<li class="nav"><a href="">Administrateur</a></li>

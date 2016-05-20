@@ -1,0 +1,5 @@
+presentation;0;Sent by a node when they present attached sensors. This is usually done in setup() at startup.
+set;1;This message is sent from or to a sensor when a sensor value should be updated
+req;2;Requests a variable value (usually from an actuator destined for controller).
+internal;3;This is a special internal message. See table below for the details
+stream;4;Used for OTA firmware updates
