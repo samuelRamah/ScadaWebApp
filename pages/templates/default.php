@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>|Default|</title>
+	<title><?= $titre; ?></title>
 	<meta charset="utf-8" />
 	<!-- <meta http-equiv="refresh" content="2" /> -->
 	<link rel ="stylesheet" type="text/css" href="styleOfficielle.css" />
@@ -26,10 +26,10 @@
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li id="home" class="nav"><a href="../../public/index.php?p=home">Home</a></li>
-						<li id="evolution" class="nav"><a href="../../public/index.php?p=evolution">Evolution</a></li>
-						<li id="debug" class="nav"><a href="../../public/index.php?p=debug">Debug</a></li>
-						<li class="nav"><a href="">Admin</a></li>
+						<li id="home" class="nav $class[0]"><a href="../../public/index.php?p=home">Home</a></li>
+						<li id="evolution" class="nav $class[1]"><a href="../../public/index.php?p=evolution">Evolution</a></li>
+						<li id="debug" class="nav $class[2]"><a href="../../public/index.php?p=debug">Debug</a></li>
+						<li class="nav $class[3]"><a href="">Admin</a></li>
 					</ul>
 				</div>
 			</div>

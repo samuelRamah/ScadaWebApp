@@ -11,13 +11,20 @@
 
 	ob_start();
 
+	$class = array();
 	if ($p === 'home') {
+		$titre = "|HOME|";
+		$class[0] = "active";
 		require('../pages/home.php');
 	}
 	elseif ($p=== 'evolution') {
+		$titre = "|EVOLUTION|";
+		$class[1] = "active";
 		require('../pages/evolution.php');
 	}
 	elseif ($p=== 'debug') {
+		$titre = "|DEBUG|";
+		$class[2] = "active";
 		require('../pages/debug.php');
 	}
 	else{
