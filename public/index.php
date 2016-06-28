@@ -11,7 +11,7 @@
 
 	ob_start();
 
-	$class = array();
+	$class = createClass(4);
 	if ($p === 'home') {
 		$titre = "|HOME|";
 		$class[0] = "active";
@@ -27,6 +27,11 @@
 		$class[2] = "active";
 		require('../pages/debug.php');
 	}
+	elseif($p === "admin"){
+		$titre = "|ADMIN|";
+		$class[3] = "active";
+		require('../pages/administrator.php');
+	}
 	else{
 		?>
 		<script type="text/javascript">
@@ -41,3 +46,16 @@
 	require '../pages/templates/default.php';
 
  ?>
+
+
+ <?php 	
+
+ 	function createClass($nb){
+ 		$class = array();
+ 		for ($i=0; $i < $nb ; $i++) { 
+ 			$class[$i] = "";
+ 		}
+ 		return $class;
+ 	}
+
+  ?>
