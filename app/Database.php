@@ -13,7 +13,7 @@ class Database
 
 	static function getInstance(){
 		$db_name  = 'Scada';
-	    $hostname = '192.168.0.20'; 
+	    $hostname = 'localhost'; 
 	    $username = 'adodab';
 	    $password = 'droopy';
 
