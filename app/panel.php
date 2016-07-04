@@ -1,6 +1,6 @@
 <?php 
 
-require 'connectionBase.php';
+// require 'Database.php';
 
 class Node{
 	function __construct(){
@@ -24,6 +24,10 @@ class Node{
 		foreach ($result as $row) {
 			$this->capteurs[$i]['description'] = $row['description'];
 			$this->capteurs[$i]['childId']     = $row['childId'];
+
+			$infos = $db->query("SELECT * FROM variable WHERE id_variable = " . $row['id_variable']);
+			$this->capteurs[$i]['valueType'] = $infos[0]['valueType'];
+			$this->capteurs[$i]['type'] = $infos[0]['type'];
 			$i++;
 		}
 		return $this->capteurs;
@@ -79,24 +83,106 @@ function getValCap($id_node, $childId)
 
 }
 
+
+
 function createPanel($node, $i){
 	$classPanel = array('panel panel-default','panel panel-success','panel panel-info','panel panel-warning','panel panel-primary','panel panel-danger');
+	$classButton = array('btn btn-default','btn btn-success','btn btn-info','btn btn-warning','btn btn-primary','btn btn-danger');
+	$backgroundColor = array('grey','#449d44','#31b0d5','#f0ad4e','#286090','#c9302c')
 ?>
 	<div class="col-sm-4 col-md-4 col-lg-3">
 		<div class= <?php echo "\"node " . $classPanel[$i % 6]."\""; ?> id=<?php echo "\"node-". $node->id_node ."\""; ?>  > 
 		    <div class="panel-heading">
-		      <h3 class="panel-title"><?php echo "" . $node->description; ?></h3>
+		      <h3 class="panel-title"><?php echo "" . $node->description; ?>
+
+		      	<span class="pull-right dropdown">
+					<i class="glyphicon glyphicon-info-sign" data-toggle="dropdown"></i>
+		      		<ul class="dropdown-menu" style="background-color: <?php echo $backgroundColor[$i % 6] ?> ">
+		                <li><a href="#">Id node : <?php echo "" . $node->id_node; ?></a></li>
+		                <li><a href="#">Id sur le réseau : <?php echo "" . $node->id; ?></a></li>
+		                <li><a href="#">Description : <?php echo "" . $node->description; ?></a></li>
+		                <li><a href="#">Sketch name : <?php echo "" . $node->sketch_name; ?></a></li>
+		                <li><a href="#">Count of capteur : <?php echo "" . count($node->capteurs); ?></a></li>
+		                <li class="divider"></li>
+		                <li><a href="#">End of information</a></li>
+		            </ul>
+		      	</span>
+		 
+			  </h3>
+		      	
+
 		    </div>
 		    <div class="panel-body">
 			  <?php 
 			  	$capteurs = $node->capteurs ; 
 			  	if (count($capteurs) > 0) {
 			  		foreach ($capteurs as $item) {
-				  		echo $item['description'] . "<br>";
-				  		echo getValCap($node->id_node, $item['childId']) . "<br>";
+			  			?>
+			  			<div id=<?php echo '"child_'. $node->id_node . '_'. $item['childId'] . '"'; ?>>				
+			  			<?php
+				  		echo $item['description']; 
+				  		?>
+
+							<span class="dropdown">
+								<i class="glyphicon glyphicon-info-sign" data-toggle="dropdown"></i>
+					      		<ul class="dropdown-menu" style="background-color: <?php echo $backgroundColor[$i % 6] ?> ">
+					                <li><a href="#">Description : <?php echo "" . $item['description']; ?></a></li>
+					                <li><a href="#">Child Id : <?php echo "" . $item['childId']; ?></a></li>
+					                <li><a href="#">End of information</a></li>
+					            </ul>
+					      	</span>
+
+				  		<?php
+
+				  		echo "<br>";
+				  		$valeur = getValCap($node->id_node, $item['childId']);
+				  		echo " ---> <span class=". '"value"' ." > " . $valeur . "</span>";
+						?>
+						<?php 
+							if ($item['type'] == 'ACTUATOR'){
+								if ($item['valueType'] == 'ANALOG'){
+									//input SLider et bouton ok
+									?>
+									<script>
+										function changeValeur(e1, e2){
+											e2.val(e1.val());
+										}
+									</script>
+									<input type="text" value=<?php echo '"'. $valeur . '"' ?> style="width: 30px" id=<?php echo '"text_' . $node->id_node . '_' . $item['childId'] . '"'  ?> > 
+									<input type="range" value=<?php echo '"'. $valeur . '"' ?> id=<?php echo '"range_' . $node->id_node . '_' . $item['childId'] . '"'; ?> >
+									<button class=<?php echo '"' .$classButton[$i % 6] . ' actuator_btn sam"' ?> id=<?php echo '"btn_'. $node->id_node . '_'. $item['childId'] . '"'?>> OK </button>
+
+									<?php
+								}
+								else {
+									//Boutons on/off
+									?>
+									<div class="onoffswitch">
+										<?php $id = '"switch_'. $node->id_node . '_'. $item['childId'] . '"'?>
+									    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox actuator_switch" id=<?php echo "$id"; ?> checked>
+									    <label class="onoffswitch-label" for=<?php echo "$id"; ?>>
+									        <span class="onoffswitch-inner"></span>
+									        <span class="onoffswitch-switch"></span>
+									    </label>
+									</div>
+									<?php
+								}
+							}
+							else {
+
+							}
+
+						?>
+						</div>
+						<?php
+
+				  		;
+				  		echo "<hr>";
 				  		// echo "" . $node->get_capteur_information();
 				  	}	
 			  	}
+
+			  	else echo "not defined";
 			  	 
 			  ?>
 		      <!-- capteurs -->
@@ -107,4 +193,4 @@ function createPanel($node, $i){
 <?php	
 }
 
- ?>
+ ?> 

@@ -22,10 +22,10 @@
 	        </div>
 	        <div class="nav navbar-nav navbar-right navbar-collapse collapse">
 	          <ul class="nav navbar-nav">
-	            <li class=<?php echo "\"nav $class[0]\""?>><a href="index.php?p=home" ><i class="glyphicon glyphicon-home">   Home</i></a>
+	            <li class=<?php echo "\"$class[0]\""?>><a href="index.php?p=home" ><i class="glyphicon glyphicon-home">   Home</i></a>
 	            </li>
-	            <li class=<?php echo "\"nav $class[1]\""?>><a href="index.php?p=evolution"><i class="glyphicon glyphicon-stats">   Evolution</i></a></li>
-	            <li class=<?php echo "\"nav $class[2]\""?>><a href="index.php?p=debug"><i class="glyphicon glyphicon-hourglass">   Debug</i></a></li>
+	            <li class=<?php echo "\"$class[1]\""?>><a href="index.php?p=evolution"><i class="glyphicon glyphicon-stats">   Evolution</i></a></li>
+	            <li class=<?php echo "\"$class[2]\""?>><a href="index.php?p=debug"><i class="glyphicon glyphicon-hourglass">   Debug</i></a></li>
 	            <li class=<?php echo "\"dropdown $class[3]\"" ?>>
 	              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Log out <b class="caret"></b></a>
 	              <ul class="dropdown-menu">
