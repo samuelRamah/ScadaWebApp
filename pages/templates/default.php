@@ -44,7 +44,6 @@
 		<div class="container" id="bodyHome">
 
 			<?= $content; ?>
-			<script src="js/jquery.js" type="text/javascript"></script>
 
 		</div>
 
