@@ -9,39 +9,51 @@
 	<link rel="stylesheet" type="text/css" href="css/slate-bootstrap.min.css">
 </head>
 <body>
+	<header>
+		 <div class="navbar navbar-default navbar-fixed-top">
+	      <div class="container">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <a class="navbar-brand" href="#">Supervisory Control and Data Acquisition</a>
+	        </div>
+	        <div class="nav navbar-nav navbar-right navbar-collapse collapse">
+	          <ul class="nav navbar-nav">
+	            <li class=<?php echo "\"nav $class[0]\""?>><a href="index.php?p=home" ><i class="glyphicon glyphicon-home">   Home</i></a>
+	            </li>
+	            <li class=<?php echo "\"nav $class[1]\""?>><a href="index.php?p=evolution"><i class="glyphicon glyphicon-stats">   Evolution</i></a></li>
+	            <li class=<?php echo "\"nav $class[2]\""?>><a href="index.php?p=debug"><i class="glyphicon glyphicon-hourglass">   Debug</i></a></li>
+	            <li class=<?php echo "\"dropdown $class[3]\"" ?>>
+	              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Log out <b class="caret"></b></a>
+	              <ul class="dropdown-menu">
+	                <li><a href="#">Log out</a></li>
+	                <li><a href="index.php?p=admin">Mode Admin</a></li>
+	              </ul>
+	            </li>
+	          </ul>
+	        </div>
+	      </div>
+	    </div>		
+	</header>
 
-	<div id="Block_Principale">
+	<section>
 
-		<header class="container">
-			<div id="menu" class="navbar navbar-default navbar-fixed-top">
-				<div class="navbar-header">
-					<button class="btn btn-success navbar-toggle" 
-					 		data-toggle="collapse" 
-					 		data-target=".navbar-collapse">
-					 		<span class="glyphicon glyphicon-chevron-down"></span>
-					</button>
-					<div id="titre">
-						<h3>System Control And Data Aquisition</h3>
-					</div>
-				</div>
-				<div class="navbar-collapse collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li id="home" class=<?php echo "\"nav $class[0]\""?>><a href="index.php?p=home">Home</a></li>
-						<li id="evolution" class=<?php echo "\"nav $class[1]\""?>><a href="index.php?p=evolution">Evolution</a></li>
-						<li id="debug" class=<?php echo "\"nav $class[2]\""?>><a href="index.php?p=debug">Debug</a></li>
-						<li class=<?php echo "\"nav $class[3]\""?>><a href="index.php?p=admin">Admin</a></li>
-					</ul>
-				</div>
-			</div>
-		</header> 
-
-		<section id="body" class="container">
+		<div class="container" id="bodyHome">
 
 			<?= $content; ?>
-			
 			<script src="js/jquery.js" type="text/javascript"></script>
-		</section>
 
-	</div>
+		</div>
+
+	</section>
+
+	
+	<footer>
+		
+	</footer>
 </body>
+
 </html>
