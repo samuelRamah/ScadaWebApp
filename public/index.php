@@ -22,7 +22,7 @@
 ?>
 		<script src="js/jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>
-		<script src="js/script.js"></script>
+		<script src="js/home.js"></script>
 
 <?php
 
@@ -36,7 +36,7 @@
 		<script src="js/jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="Chart/dist/Chart.js"></script>
-		<script src="js/traceChart.js"></script>
+		<script src="js/evolution.js"></script>
 
 <?php
 
