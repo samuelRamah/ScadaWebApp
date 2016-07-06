@@ -69,7 +69,7 @@ def getMessage(data):
     return message
 
 
-def getVal(table, champ, val):
+def getKey(table, champ, val):
     """Recupere cle primaire.
 
     Recupere la valeur de la cle primaire de la table dont le champ correspond
@@ -110,13 +110,13 @@ def insertMessageInDb(message):
     """
     # TODO gerer le cas ou nodeId = -1 , c-a-d le node n'existe
     # pas encore dans la base de donnees
-    nodeId = getVal('node', 'id', int(message['nodeId']))
+    nodeId = getKey('node', 'id', int(message['nodeId']))
     childId = int(message['childId'])
-    msgType = getVal('messageType', 'value', int(message['msgType']))
+    msgType = getKey('messageType', 'value', int(message['msgType']))
     ack = int(message['ack'])
     subType = int(message['subType'])
     payload = message['payload']
-    subType = getVal('variableType', 'value', message['subType'])
+    subType = getKey('variableType', 'value', message['subType'])
     queryInsertMessage = (
         "INSERT INTO message "
         "   (id_node, childId, id_messageType, ack, "
@@ -134,21 +134,23 @@ def insertMessageInDb(message):
 
     cnx.commit()
 
+
 def addNodesInfos(nodes, **infos):
     pass
+
 
 def processMessage(message):
     if not type(message) is dict:
         print(message)
         return
 
-    nodeId = getVal('node', 'id', int(message['nodeId']))
+    nodeId = getKey('node', 'id', int(message['nodeId']))
     childId = int(message['childId'])
-    msgType = getVal('messageType', 'value', int(message['msgType']))
-    ack = int(message['ack'])
-    subType = int(message['subType'])
+    # msgType = getKey('messageType', 'value', int(message['msgType']))
+    # ack = int(message['ack'])
+    # subType = int(message['subType'])
     payload = message['payload']
-    subType = getVal('variableType', 'value', message['subType'])
+    # subType = getKey('variableType', 'value', message['subType'])
 
     if int(message['msgType']) == MsgType.PRESENTATION:
         """ MessageType : Presentation"""
@@ -192,9 +194,6 @@ def processMessage(message):
         if nodeId == -1:
             pass
         else:
-            nodes[nodeId] = dict()
-            nodes[nodesId][childId] = dict()
-
             pass
         pass
     elif int(message['msgType']) == MsgType.INTERNAL:
@@ -207,17 +206,83 @@ def processMessage(message):
     print(message)
 
 
+def get_val(table, key, champ):
+    reqSelectVal = (
+        "SELECT %s FROM %s "
+        "WHERE id_%s = %s"
+    )
+    cursor.execute(reqSelectVal, (champ, table, table, key))
+    row = cursor.fetchone()
+
+    if row is not None:
+        ret_val = row[champ]
+        while row is not None:
+            row = cursor.fetchone()
+        return ret_val
+    else:
+        return -1
+
+
+def sendCommand(**params):
+    nodeId = get_val('node', params['id_node'], 'id')
+    childSensorId = params['childId']
+    messageType = 1
+    ack = 0
+    subType = get_val('variableType', params['sub_type'], 'value')
+    payload = params['payload']
+
+    msg = "{};{};{};{};{};{}\n".format(
+        nodeId, childSensorId, messageType, ack, subType, payload)
+
+    arduino.write(msg)
+    pass
+
+
 def checkForCommands():
     # TODO : verifier si il y a des nouveaux messages dans la base de donnees
     # venant de l'application web, si oui les envoyers sur le reseau MySensor
-    
-    msgType = getVal('messageType', 'value', MsgType.SET)
+
+    # msgType = getKey('messageType', 'value', MsgType.SET)
 
     queryReqMessage = (
-        "SELECT * "
-        "FROM message "
-        "WHERE id_messageType = %"
+        "SELECT * FROM message "
+        "WHERE message.receivedAt IN ( "
+        "    SELECT MAX(message.receivedAt) FROM message "
+        "    GROUP BY message.id_node, message.childId "
+        ") "
+        "AND message.id_messageType = 2 "
+        "AND message.exptype = 'WEB' "
+        "ORDER BY `message`.`id_message` DESC "
     )
+
+    cursor.execute(queryReqMessage)
+    row = cursor.fetchone()
+    while row is not None:
+        nodeId = int(get_val('node', row['id_node'], 'id'))
+        childId = int(row['childId'])
+        if nodes[nodeId] is not None:
+            if nodes[nodeId][childId] is not None:
+                if nodes[nodeId][childId] >= row['receivedAt']:
+                    # La commande a deja ete envoyee
+                    pass
+                else:
+                    # Il y a une commande plus recente
+                    nodes[nodeId][childId] = row['receivedAt']
+                    sendCommand(row)
+                    pass
+                pass
+            else:
+                # Premiere commande pour le child
+                nodes[nodeId] = dict(nodes[nodeId])
+                nodes[nodeId][childId] = row['receivedAt']
+                sendCommand(row)
+        else:
+            # c'est la premiere commande qui doit etre envoyee
+            # nodes = dict(nodes)
+            nodes[nodeId] = dict()
+            nodes[nodeId][childId] = row['receivedAt']
+            sendCommand(row)
+            pass
 
     pass
 
