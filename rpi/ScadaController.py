@@ -134,6 +134,8 @@ def insertMessageInDb(message):
 
     cnx.commit()
 
+def addNodesInfos(nodes, **infos):
+    pass
 
 def processMessage(message):
     if not type(message) is dict:
@@ -187,7 +189,13 @@ def processMessage(message):
 
         pass
     elif int(message['msgType']) == MsgType.REQ:
+        if nodeId == -1:
+            pass
+        else:
+            nodes[nodeId] = dict()
+            nodes[nodesId][childId] = dict()
 
+            pass
         pass
     elif int(message['msgType']) == MsgType.INTERNAL:
         pass
@@ -202,6 +210,15 @@ def processMessage(message):
 def checkForCommands():
     # TODO : verifier si il y a des nouveaux messages dans la base de donnees
     # venant de l'application web, si oui les envoyers sur le reseau MySensor
+    
+    msgType = getVal('messageType', 'value', MsgType.SET)
+
+    queryReqMessage = (
+        "SELECT * "
+        "FROM message "
+        "WHERE id_messageType = %"
+    )
+
     pass
 
 """
@@ -233,7 +250,10 @@ serialConnection = (
 )
 # Connect to the arduino gateway via serial port
 arduino = serial.Serial(*serialConnection)
-arduino = serial.Serial()
+# arduino = serial.Serial()
+
+nodes = dict()
+
 
 while True:
     # Boucle principale, traitement de toutes les taches
