@@ -119,15 +119,14 @@ function createPanel($node, $i){
 			  		foreach ($capteurs as $item) {
 			  			?>
 			  			<div id=<?php echo '"child_'. $node->id_node . '_'. $item['childId'] . '"'; ?>>				
-			  			<?php
-				  		echo $item['description']; 
-				  		?>
-
-							<span class="dropdown">
+			  				<span class="child_description"><?php echo $item['description']; ?></span>
+			  				<span class="dropdown">
 								<i class="glyphicon glyphicon-info-sign" data-toggle="dropdown"></i>
 					      		<ul class="dropdown-menu" style="background-color: <?php echo $backgroundColor[$i % 6] ?> ">
 					                <li><a href="#">Description : <?php echo "" . $item['description']; ?></a></li>
 					                <li><a href="#">Child Id : <?php echo "" . $item['childId']; ?></a></li>
+					                <li><a href="#">Type : <?php echo "" . $item['type']; ?></a></li>
+					                <li><a href="#">Value Type : <?php echo "" . $item['valueType']; ?></a></li>
 					                <li><a href="#">End of information</a></li>
 					            </ul>
 					      	</span>
