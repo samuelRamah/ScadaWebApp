@@ -1,6 +1,7 @@
 var actuators;
 var textElement;
 var textBgc;
+var newColor;
 
 $(document).ready(function(){
 	actuators_btn = $('.actuator_btn');
@@ -70,7 +71,9 @@ $(document).ready(function(){
 	$("[id*=text_]").on("change", function(){
 		// console.log($(this));
 		textBgc = $(this).css("background-color");
-		var newColor = "#D5EF2E";
+		
+		// newColor = "#D5EF2E";
+		
 		$(this).css("background-color", newColor);
 		textElement = $(this);
 
@@ -107,7 +110,7 @@ $(document).ready(function(){
 							cible = "#switch_" + sensors[i].id_node + "_" + sensors[i].childId;
 							oldValue = $(cible).attr('checked');
 							if (oldValue != sensors[i].payload){
-								$(cible).attr('checked', (sensors[i].payload == 'checked' ? true : false))
+								/*$(cible).attr('checked', (sensors[i].payload == 'checked' ? true : false))*/
 							}
 							// console.log(s + " is actuator numeric " + $(cible).attr('checked'));
 						}
@@ -116,8 +119,16 @@ $(document).ready(function(){
 						cible = "#text_" + sensors[i].id_node + "_" + sensors[i].childId;
 						oldValue = $(cible).val();
 						if (oldValue != sensors[i].payload){
+							if (oldValue > sensors[i].payload){
+								newColor = "#31ABDA";
+							}
+							else {
+								newColor = "#FF0029";
+							}
+
 							$(cible).val(sensors[i].payload);	
 							$(cible).change();
+
 						}
 						// console.log(s + " is sensor");
 					}
