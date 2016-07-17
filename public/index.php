@@ -1,4 +1,12 @@
+
 <?php 
+	define("HOME", 0);
+	define("EVOLUTION", 1);
+	define("DEBUG", 2);
+	define("SCHEDULE", 3);
+	define("SKETCHBOOK", 4);
+	define("ADMIN", 5);
+
 
 	require '../app/Autoloader.php';
 	App\Autoloader::register();
@@ -14,7 +22,11 @@
 
 	ob_start();
 
-	$class = createClass(4);
+
+
+	$class = createClass(6);
+	$titre = "SCADA WEB APP";
+
 	if ($p === 'home') {
 		$titre = "|HOME|";
 		$class[0] = "active";
@@ -27,6 +39,7 @@
 <?php
 
 	}
+	
 	elseif ($p=== 'evolution') {
 		$titre = "|EVOLUTION|";
 		$class[1] = "active";
@@ -40,23 +53,48 @@
 
 <?php
 
-
-
 	}
-	elseif ($p=== 'debug') {
-		$titre = "|DEBUG|";
+
+	elseif ($p === 'schedule') {
+		$titre = "|SCHEDULE|";
 		$class[2] = "active";
-		require('../pages/debug.php');
-	
+		require('../pages/schedule.php');
+?>
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+
+<?php
+
+			
+	}
+
+
+	elseif ($p === 'sketchbook') {
+		$titre = "|SKETCHBOOK|";
+		$class[3] = "active";
+		require('../pages/sketchbook.php');
 ?>
 		<script src="js/jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 
 <?php
 	}
+
+	elseif ($p=== 'debug') {
+		$titre = "|DEBUG|";
+		$class[4] = "active";
+		require('../pages/debug.php');
+	
+?>
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/debug.js"></script>
+
+<?php
+	}
 	elseif($p === "admin"){
 		$titre = "|ADMIN|";
-		$class[3] = "active";
+		$class[5] = "active";
 		require('../pages/administrator.php');
 	
 ?>
