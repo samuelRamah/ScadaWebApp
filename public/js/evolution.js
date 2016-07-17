@@ -3,7 +3,7 @@
 var min = 11;
 var max = 13;
 var stepSize = 0.5;
-var division = 10;
+var division = 20;
 var node = {
 	id: undefined,
 	description: undefined
@@ -12,7 +12,8 @@ var child = {
 	id: undefined, 
 	description: undefined
 };
-
+var tab0 = [];
+var tab1 = [];
 var donnejson;
 
 function recup(){
@@ -40,15 +41,15 @@ function recup(){
 
 			stepSize = (max - min) / division;
 
-			var tab0 = [];
-			var tab1 = [];
-
 			for (var i = 0; i < donnejson.messages.length; i++) {
 				tab0[i] = donnejson.messages[(donnejson.messages.length-1) - i].payload;
 				tab1[i] = donnejson.messages[(donnejson.messages.length-1) - i].receivedAt;
 			}
 
 			chart(tab0,tab1);
+
+			$("#min_val").val(min);
+			$("#max_val").val(max);
 
 			// $('#ito').append('<p>' + $donnejson[0].temperature + '</p><hr>');
 			// console.log($donnejson);
@@ -119,7 +120,19 @@ $(document).ready(function(){
 
 	recup();
 
-	$("#see_chart").click(recup);
+	$("#see_chart").click(function(){
+		console.log("node.id : " + node.id + ", .. : " + $("#id_node").val());
+		console.log("child.id : " + child.id + ", .. : " + $("#id_capteur").val())
+		if (node.id != $("#id_node").val() || child.id != $("#id_capteur").val()){
+			recup();
+		}
+		else {
+			min = Number($("#min_val").val());
+			max = Number($("#max_val").val());
+			stepSize = (max - min) / division;
+			chart(tab0, tab1);
+		}
+	});
 
 	$("#id_node").change(function(event) {
 		var id_node = $(this).val();
